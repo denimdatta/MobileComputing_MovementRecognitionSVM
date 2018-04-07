@@ -21,5 +21,6 @@ public class Constants {
     static final String TABLE_COLUMN_VALUE_X = "XPos_";
     static final String TABLE_COLUMN_VALUE_Y = "YPos_";
     static final String TABLE_COLUMN_VALUE_Z = "ZPos_";
+    static final String ACCELEROMETER_ACTION = "ACCELEROMETER";
     public static final String EMPTY_TEXT = "";
 }
