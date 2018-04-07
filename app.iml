@@ -133,6 +133,7 @@
     <orderEntry type="library" name="com.android.support:support-core-ui-26.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:rules-1.0.1" level="project" />
+    <orderEntry type="library" name="__local_aars__:E.\Works\Workspace\Android\CSE535\Assignment3\Group3\app\libs\libsvm.jar:unspecified@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-3.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-core:1.3@jar" level="project" />
