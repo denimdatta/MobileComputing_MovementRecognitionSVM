@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DataCollectActivity" />
-        <activity android:name=".DataCollectStatusActivity"/>
+        <activity android:name=".DataCollectStatusActivity" />
+        <activity android:name=".SvmParametersActivity"/>
 
         <service
             android:name=".AccelerometerService"

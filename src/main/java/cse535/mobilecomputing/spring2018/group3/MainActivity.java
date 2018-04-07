@@ -3,6 +3,7 @@ package cse535.mobilecomputing.spring2018.group3;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -20,26 +21,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static SQLiteDatabase db = null;
+    static long runData = 0, walkData = 0, jumpData = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(grantPermission()) {
+        if (grantPermission()) {
             checkDB();
         }
-
-        Button collectDataBtn = (Button) findViewById(R.id.CollectDataBtn);
-        collectDataBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!grantPermission()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, DataCollectActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Button clearDataBtn = (Button) findViewById(R.id.ClearDataBtn);
         clearDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,17 +52,58 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        Button collectDataBtn = (Button) findViewById(R.id.CollectDataBtn);
+        collectDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!grantPermission()) {
+                    return;
+                }
+                Intent intent = new Intent(MainActivity.this, DataCollectActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button classifyBtn = (Button) findViewById(R.id.ClassifyBtn);
+        classifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (db == null) {
+                    db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
+                }
+                runData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
+                        Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.run)});
+                walkData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
+                        Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.walk)});
+                jumpData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
+                        Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.jump)});
+                System.out.println("[TEST]: " + runData + "::" + walkData + "::" + jumpData);
+                if (db != null) {
+                    db.close();
+                    db = null;
+                }
+
+                if (runData < Constants.REPEAT || walkData < Constants.REPEAT || jumpData < Constants.REPEAT) {
+                    Toast.makeText(MainActivity.this, "Insufficient Data", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intent = new Intent(MainActivity.this, SvmParametersActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
     private void checkDB() {
         File dir = new File(Constants.filePath);
         if (dir.exists()) {
-            File file = new File(Constants.filePath+Constants.DBNAME);
-            if(file.exists()) {
+            File file = new File(Constants.filePath + Constants.DBNAME);
+            if (file.exists()) {
                 db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READWRITE);
-                db.delete(Constants.TABLE_NAME, Constants.TABLE_COLUMN_VALUE_Z+Constants.LIMIT+" IS NULL", null);
-                db.close();;
+                db.delete(Constants.TABLE_NAME, Constants.TABLE_COLUMN_VALUE_Z + Constants.LIMIT + " IS NULL", null);
+                db.close();
                 db = null;
             }
         }
