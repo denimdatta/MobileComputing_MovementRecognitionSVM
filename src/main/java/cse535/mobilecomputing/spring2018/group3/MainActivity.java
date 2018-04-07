@@ -20,8 +20,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static SQLiteDatabase db = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,41 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 if (!grantPermission()) {
                     return;
                 }
-                try {
-                    File dir = new File(Constants.filePath);
-                    if (!dir.exists()) {
-                        dir.mkdir();
-                    }
-
-                    StringBuilder sqlQuery = new StringBuilder("create table " + Constants.TABLE_NAME +
-                            "(" + Constants.TABLE_COLUMN_VALUE_ID + " text");
-                    for (int i = 1; i <= 50; i++) {
-                        sqlQuery.append(", " );
-                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_X);
-                        sqlQuery.append(i);
-                        sqlQuery.append(" float, ");
-                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Y);
-                        sqlQuery.append(i);
-                        sqlQuery.append(" float, ");
-                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Z);
-                        sqlQuery.append(i);
-                        sqlQuery.append(" float");
-                    }
-                    sqlQuery.append(");");
-
-                    db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
-                    db.beginTransaction();
-                    try {
-                        db.execSQL(sqlQuery.toString());
-                        db.setTransactionSuccessful();
-                    } catch (SQLiteException exp) {
-                        // Exception
-                    } finally {
-                        db.endTransaction();
-                    }
-                } catch (SQLException exp) {
-                    Toast.makeText(MainActivity.this, exp.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                Intent intent = new Intent(MainActivity.this, DataCollectActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -103,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public void onDestroy() {
-        // Close DB if open
-        if (db != null) {
-            db.close();
-        }
         super.onDestroy();
     }
 

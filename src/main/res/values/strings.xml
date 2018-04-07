@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Group3</string>
-    <string name="collectData">Collect Data</string>
-    <string name="clearData">Clear Data</string>
+    <string name="collect">Collect Data</string>
+    <string name="clear">Clear Data</string>
     <string name="classify">Classify Data</string>
+    <string name="run">Run</string>
+    <string name="walk">Walk</string>
+    <string name="jump">Jump</string>
 </resources>

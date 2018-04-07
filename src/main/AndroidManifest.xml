@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".DataCollectActivity"/>
+
         <service
             android:name=".AccelerometerService"
             android:enabled="true"
