@@ -6,4 +6,6 @@
     <string name="run">Run</string>
     <string name="walk">Walk</string>
     <string name="jump">Jump</string>
+    <string name="collectionProgress">Data colection in progress for %1$s</string>
+    <string name="collectionComplete">Data colection complete for %1$s</string>
 </resources>
