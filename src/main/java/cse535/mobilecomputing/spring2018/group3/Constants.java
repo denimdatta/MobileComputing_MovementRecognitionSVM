@@ -12,11 +12,11 @@ import java.io.File;
  */
 
 public class Constants {
-    public static final String filePath = Environment.getExternalStorageDirectory() +
+    static final String filePath = Environment.getExternalStorageDirectory() +
             File.separator + "Android" + File.separator + "data" + File.separator +
             "CSE535_ASSIGNMENT3" + File.separator;
-    public static final String DBNAME = "Group3.db";
-    public static final String TABLE_NAME = "ACTIVITY_DATA";
+    static final String DBNAME = "Group3.db";
+    static final String TABLE_NAME = "ACTIVITY_DATA";
     static final String TABLE_COLUMN_VALUE_ID = "ID";
     static final String TABLE_COLUMN_VALUE_X = "ACCEL_X_";
     static final String TABLE_COLUMN_VALUE_Y = "ACCEL_Y_";
