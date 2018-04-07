@@ -7,12 +7,19 @@ import java.io.File;
 /**
  * Constants
  * Common Class for Constant Values
+ *
  * @author Group3 CSE535 Spring 2018
  */
 
 public class Constants {
-    public static final String filePathCommon = Environment.getExternalStorageDirectory() + File.separator + "Android" + File.separator + "data";
-    public static final String filePath = filePathCommon + File.separator + "CSE535_ASSIGNMENT3" + File.separator;
+    public static final String filePath = Environment.getExternalStorageDirectory() +
+            File.separator + "Android" + File.separator + "data" + File.separator +
+            "CSE535_ASSIGNMENT3" + File.separator;
     public static final String DBNAME = "Group3.db";
+    public static final String TABLE_NAME = "ACTIVITY_DATA";
+    static final String TABLE_COLUMN_VALUE_ID = "ID";
+    static final String TABLE_COLUMN_VALUE_X = "XPos";
+    static final String TABLE_COLUMN_VALUE_Y = "YPos";
+    static final String TABLE_COLUMN_VALUE_Z = "ZPos";
     public static final String EMPTY_TEXT = "";
 }
