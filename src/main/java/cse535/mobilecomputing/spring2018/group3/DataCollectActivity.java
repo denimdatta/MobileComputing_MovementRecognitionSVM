@@ -21,6 +21,7 @@ public class DataCollectActivity extends AppCompatActivity {
     static SQLiteDatabase db = null;
     static long runData = 0, walkData = 0, jumpData = 0;
     Button runBtn, walkBtn, jumpBtn;
+    DateFormat dateForm = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +70,14 @@ public class DataCollectActivity extends AppCompatActivity {
             Toast.makeText(DataCollectActivity.this, exp.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        DateFormat dateForm = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-        String timeStamp = dateForm.format(new Date());
-
         final Intent intent = new Intent(DataCollectActivity.this, DataCollectStatusActivity.class);
-        intent.putExtra("id", timeStamp);
 
         runBtn = (Button) findViewById(R.id.RunningBtn);
         runBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String timeStamp = dateForm.format(new Date());
+                intent.putExtra("id", timeStamp);
                 intent.putExtra("activity", getString(R.string.run));
                 startActivity(intent);
             }
@@ -88,7 +87,8 @@ public class DataCollectActivity extends AppCompatActivity {
         walkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String timeStamp = dateForm.format(new Date());
+                intent.putExtra("id", timeStamp);
                 intent.putExtra("activity", getString(R.string.walk));
                 startActivity(intent);
             }
@@ -98,7 +98,8 @@ public class DataCollectActivity extends AppCompatActivity {
         jumpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String timeStamp = dateForm.format(new Date());
+                intent.putExtra("id", timeStamp);
                 intent.putExtra("activity", getString(R.string.jump));
                 startActivity(intent);
             }
