@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
@@ -39,6 +41,9 @@ public class DataCollectActivity extends AppCompatActivity {
                 sqlQuery.append(i);
                 sqlQuery.append(" float");
             }
+            sqlQuery.append(", ");
+            sqlQuery.append(Constants.TABLE_COLUMN_LABEL);
+            sqlQuery.append(" text");
             sqlQuery.append(");");
 
             db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
@@ -50,10 +55,35 @@ public class DataCollectActivity extends AppCompatActivity {
                 // Exception
             } finally {
                 db.endTransaction();
+                db.close();
             }
         } catch (SQLException exp) {
             Toast.makeText(DataCollectActivity.this, exp.getMessage(), Toast.LENGTH_LONG).show();
         }
+
+        Button runBtn = (Button) findViewById(R.id.RunningBtn);
+        runBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button walkBtn = (Button) findViewById(R.id.WalkingBtn);
+        walkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button jumpBtn = (Button) findViewById(R.id.JumpingBtn);
+        jumpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     /**
