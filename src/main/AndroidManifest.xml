@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cse535.mobilecomputing.spring2018.group3">
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="24" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
