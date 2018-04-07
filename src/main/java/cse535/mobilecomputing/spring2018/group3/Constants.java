@@ -24,5 +24,6 @@ public class Constants {
     static final String TABLE_COLUMN_LABEL= "ACTIVITY_LABEL";
     static final String ACCELEROMETER_ACTION = "ACCELEROMETER";
     static final int LIMIT = 50;
+    static final int DELAY = 100;
     public static final String EMPTY_TEXT = "";
 }
