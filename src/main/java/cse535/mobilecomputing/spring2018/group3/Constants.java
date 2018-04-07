@@ -12,14 +12,19 @@ import java.io.File;
  */
 
 public class Constants {
-    public static final String filePath = Environment.getExternalStorageDirectory() +
+    static final String filePath = Environment.getExternalStorageDirectory() +
             File.separator + "Android" + File.separator + "data" + File.separator +
             "CSE535_ASSIGNMENT3" + File.separator;
-    public static final String DBNAME = "Group3.db";
-    public static final String TABLE_NAME = "ACTIVITY_DATA";
+    static final String DBNAME = "Group3.db";
+    static final String TABLE_NAME = "ACTIVITY_DATA";
     static final String TABLE_COLUMN_VALUE_ID = "ID";
-    static final String TABLE_COLUMN_VALUE_X = "XPos_";
-    static final String TABLE_COLUMN_VALUE_Y = "YPos_";
-    static final String TABLE_COLUMN_VALUE_Z = "ZPos_";
+    static final String TABLE_COLUMN_VALUE_X = "ACCEL_X_";
+    static final String TABLE_COLUMN_VALUE_Y = "ACCEL_Y_";
+    static final String TABLE_COLUMN_VALUE_Z = "ACCEL_Z_";
+    static final String TABLE_COLUMN_LABEL= "ACTIVITY_LABEL";
+    static final String ACCELEROMETER_ACTION = "ACCELEROMETER";
+    static final int LIMIT = 50;
+    static final int DELAY = 100;
+    static final int REPEAT = 20;
     public static final String EMPTY_TEXT = "";
 }

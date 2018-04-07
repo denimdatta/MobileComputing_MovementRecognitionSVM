@@ -20,6 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DataCollectActivity" />
+        <activity android:name=".DataCollectStatusActivity"/>
+
+        <service
+            android:name=".AccelerometerService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>
