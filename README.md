@@ -1,7 +1,7 @@
 # MobileComputing_MovementRecognitionSVM
 Using SVM, classify among Run, Walk and Jump with Accelerometer sensor data
 
-## Used the LIBSVM jar
+### Used the LIBSVM jar
 Author: Chang, Chih-Chung and Lin, Chih-Jen </br>
 Title: LIBSVM: A library for support vector machines </br>
 Journal: ACM Transactions on Intelligent Systems and Technology </br>
