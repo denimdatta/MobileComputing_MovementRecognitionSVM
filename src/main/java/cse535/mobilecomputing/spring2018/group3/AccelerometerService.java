@@ -17,8 +17,7 @@ import android.os.IBinder;
  */
 public class AccelerometerService extends Service implements SensorEventListener {
     float X, Y, Z;
-    int delayMS = 100;
-    long lastTime = System.currentTimeMillis() - delayMS;
+    long lastTime = System.currentTimeMillis() - Constants.DELAY;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -27,7 +26,7 @@ public class AccelerometerService extends Service implements SensorEventListener
 
         // enforcing delay of 1 Sec between consecutive sensor data
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER &&
-                (curTime - lastTime) >= delayMS) {
+                (curTime - lastTime) >= Constants.DELAY) {
             lastTime = curTime;
             X = event.values[0];
             Y = event.values[1];
@@ -48,7 +47,7 @@ public class AccelerometerService extends Service implements SensorEventListener
         // Register Sensor with SensorServices
         SensorManager accelerometerManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor senseAccelerometer = accelerometerManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        accelerometerManager.registerListener(this, senseAccelerometer, delayMS);
+        accelerometerManager.registerListener(this, senseAccelerometer, Constants.DELAY);
     }
 
     @Override

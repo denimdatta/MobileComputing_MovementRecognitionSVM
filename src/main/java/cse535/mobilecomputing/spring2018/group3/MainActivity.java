@@ -3,6 +3,7 @@ package cse535.mobilecomputing.spring2018.group3;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -18,11 +19,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    static SQLiteDatabase db = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        grantPermission();
+        if(grantPermission()) {
+            checkDB();
+        }
 
         Button collectDataBtn = (Button) findViewById(R.id.CollectDataBtn);
         collectDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+
+    private void checkDB() {
+        File dir = new File(Constants.filePath);
+        if (dir.exists()) {
+            File file = new File(Constants.filePath+Constants.DBNAME);
+            if(file.exists()) {
+                db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READWRITE);
+                db.delete(Constants.TABLE_NAME, Constants.TABLE_COLUMN_VALUE_Z+Constants.LIMIT+" IS NULL", null);
+                db.close();;
+                db = null;
+            }
+        }
     }
 
 
@@ -118,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
             } catch (InterruptedException exp) {
                 // Do Nothing
             }
+        } else {
+            checkDB();
         }
     }
 }
