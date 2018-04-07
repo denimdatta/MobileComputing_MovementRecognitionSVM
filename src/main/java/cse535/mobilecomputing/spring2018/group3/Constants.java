@@ -18,8 +18,8 @@ public class Constants {
     public static final String DBNAME = "Group3.db";
     public static final String TABLE_NAME = "ACTIVITY_DATA";
     static final String TABLE_COLUMN_VALUE_ID = "ID";
-    static final String TABLE_COLUMN_VALUE_X = "XPos";
-    static final String TABLE_COLUMN_VALUE_Y = "YPos";
-    static final String TABLE_COLUMN_VALUE_Z = "ZPos";
+    static final String TABLE_COLUMN_VALUE_X = "XPos_";
+    static final String TABLE_COLUMN_VALUE_Y = "YPos_";
+    static final String TABLE_COLUMN_VALUE_Z = "ZPos_";
     public static final String EMPTY_TEXT = "";
 }

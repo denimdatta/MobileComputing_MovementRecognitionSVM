@@ -41,12 +41,19 @@ public class MainActivity extends AppCompatActivity {
                         dir.mkdir();
                     }
 
-                    StringBuffer sqlQuery = new StringBuffer("create table " + Constants.TABLE_NAME +
+                    StringBuilder sqlQuery = new StringBuilder("create table " + Constants.TABLE_NAME +
                             "(" + Constants.TABLE_COLUMN_VALUE_ID + " text");
                     for (int i = 1; i <= 50; i++) {
-                        sqlQuery.append(", "+ Constants.TABLE_COLUMN_VALUE_X + "_" + i + " float, " +
-                                Constants.TABLE_COLUMN_VALUE_Y + "_" + i + " float, " +
-                                Constants.TABLE_COLUMN_VALUE_Z + "_" + i + " float");
+                        sqlQuery.append(", " );
+                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_X);
+                        sqlQuery.append(i);
+                        sqlQuery.append(" float, ");
+                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Y);
+                        sqlQuery.append(i);
+                        sqlQuery.append(" float, ");
+                        sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Z);
+                        sqlQuery.append(i);
+                        sqlQuery.append(" float");
                     }
                     sqlQuery.append(");");
 
@@ -105,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * This function checks if the required
+     * This function checks if the required permission is granted
      *
-     * @return
+     * @return True if granted, False otherwise
      */
     private boolean grantPermission() {
         List<String> permReqList = new ArrayList<>();
@@ -150,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException exp) {
-
+                // Do Nothing
             }
         }
     }
