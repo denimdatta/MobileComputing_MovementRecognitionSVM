@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Group3</string>
+    <string name="collectData">Collect Data</string>
+    <string name="clearData">Clear Data</string>
+    <string name="classify">Classify Data</string>
 </resources>
