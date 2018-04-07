@@ -25,5 +25,6 @@ public class Constants {
     static final String ACCELEROMETER_ACTION = "ACCELEROMETER";
     static final int LIMIT = 50;
     static final int DELAY = 100;
+    static final int REPEAT = 20;
     public static final String EMPTY_TEXT = "";
 }
