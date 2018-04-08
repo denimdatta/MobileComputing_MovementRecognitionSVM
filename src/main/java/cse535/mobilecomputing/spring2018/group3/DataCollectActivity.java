@@ -28,47 +28,7 @@ public class DataCollectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_collect);
 
-        try {
-            File dir = new File(Constants.filePath);
-            if (!dir.exists()) {
-                dir.mkdir();
-            }
-
-            StringBuilder sqlQuery = new StringBuilder("create table " + Constants.TABLE_NAME +
-                    "(" + Constants.TABLE_COLUMN_VALUE_ID + " text");
-            for (int i = 1; i <= 50; i++) {
-                sqlQuery.append(", ");
-                sqlQuery.append(Constants.TABLE_COLUMN_VALUE_X);
-                sqlQuery.append(i);
-                sqlQuery.append(" float, ");
-                sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Y);
-                sqlQuery.append(i);
-                sqlQuery.append(" float, ");
-                sqlQuery.append(Constants.TABLE_COLUMN_VALUE_Z);
-                sqlQuery.append(i);
-                sqlQuery.append(" float");
-            }
-            sqlQuery.append(", ");
-            sqlQuery.append(Constants.TABLE_COLUMN_LABEL);
-            sqlQuery.append(" text");
-            sqlQuery.append(");");
-
-            db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
-            db.beginTransaction();
-            try {
-                db.execSQL(sqlQuery.toString());
-                db.setTransactionSuccessful();
-
-            } catch (SQLiteException exp) {
-                // Exception
-            } finally {
-                db.endTransaction();
-                db.close();
-                db = null;
-            }
-        } catch (SQLException exp) {
-            Toast.makeText(DataCollectActivity.this, exp.getMessage(), Toast.LENGTH_LONG).show();
-        }
+        Utility.createDB();
 
         final Intent intent = new Intent(DataCollectActivity.this, DataCollectStatusActivity.class);
 
@@ -137,7 +97,8 @@ public class DataCollectActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         if(db == null) {
-            db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
+            Utility.createDB();
+            db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
         }
         runData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                 Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.run)});
