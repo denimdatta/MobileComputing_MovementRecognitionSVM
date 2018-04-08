@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/SVMTypeTV"
-        android:layout_width="106dp"
+        android:layout_width="115dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/KernelTypeTV"
-        android:layout_width="106dp"
+        android:layout_width="115dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -47,7 +47,7 @@
 
     <TextView
         android:id="@+id/CostNuTV"
-        android:layout_width="106dp"
+        android:layout_width="115dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -57,5 +57,31 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/KernelTypeTV" />
+
+    <TextView
+        android:id="@+id/kcvTV"
+        android:layout_width="115dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Cross Validation  \nFold :"
+        android:textAlignment="viewEnd"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CostNuTV" />
+
+    <Button
+        android:id="@+id/TrainSVMBtn"
+        android:layout_width="118dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="@string/trainSVM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="208dp" />
 
 </android.support.constraint.ConstraintLayout>

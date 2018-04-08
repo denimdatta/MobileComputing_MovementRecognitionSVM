@@ -3,6 +3,7 @@
     <string name="collect">Collect Data</string>
     <string name="clear">Clear Data</string>
     <string name="classify">Classify Data</string>
+    <string name="trainSVM">Train SVM</string>
     <string name="run">Run</string>
     <string name="walk">Walk</string>
     <string name="jump">Jump</string>
