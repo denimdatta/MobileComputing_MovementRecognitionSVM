@@ -1,5 +1,6 @@
 package cse535.mobilecomputing.spring2018.group3;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,8 @@ public class SvmParametersActivity extends AppCompatActivity {
         trainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SvmParametersActivity.this, TrainSvmActivity.class);
+                startActivity(intent);
             }
         });
     }

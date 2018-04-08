@@ -43,8 +43,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Data Cleared", Toast.LENGTH_LONG).show();
                 } else {
                     File file = new File(Constants.filePath + Constants.DBNAME);
-                    if (!file.exists() || file.delete()) {
-                        Toast.makeText(MainActivity.this, "Data Cleared", Toast.LENGTH_LONG).show();
+                    if (!file.exists()) {
+                        Toast.makeText(MainActivity.this, "Data Cleared " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (file.delete()) {
+                        if (db != null) {
+                            db.close();
+                            db = null;
+                        }
+                        Toast.makeText(MainActivity.this, "Data Cleared " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(MainActivity.this, "Couldn't clear Data", Toast.LENGTH_LONG).show();
                     }
@@ -70,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (db == null) {
-                    db = SQLiteDatabase.openOrCreateDatabase(Constants.filePath + Constants.DBNAME, null);
+                    Utility.createDB();
+                    db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
                 }
                 runData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.run)});

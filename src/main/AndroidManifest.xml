@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".DataCollectActivity" />
         <activity android:name=".DataCollectStatusActivity" />
-        <activity android:name=".SvmParametersActivity"/>
+        <activity android:name=".SvmParametersActivity" />
+        <activity android:name=".TrainSvmActivity" />
 
         <service
             android:name=".AccelerometerService"
