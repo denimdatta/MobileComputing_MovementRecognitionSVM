@@ -10,6 +10,6 @@
     <string name="runBtn">Run  (%1$d/%2$d)</string>
     <string name="walkBtn">Walk  (%1$d/%2$d)</string>
     <string name="jumpBtn">Jump  (%1$d/%2$d)</string>
-    <string name="collectionProgress">Data colection in progress for %1$s</string>
-    <string name="collectionComplete">Data colection complete for %1$s</string>
+    <string name="collectionProgress">%1$s: In Progress</string>
+    <string name="collectionComplete">%1$s: Complete</string>
 </resources>
