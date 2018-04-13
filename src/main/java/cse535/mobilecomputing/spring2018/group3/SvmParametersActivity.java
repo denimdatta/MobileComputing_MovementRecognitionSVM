@@ -96,9 +96,6 @@ public class SvmParametersActivity extends AppCompatActivity {
                     resultTV.setText(error.toString());
                     ex.printStackTrace();
                 }
-
-//                Intent intent = new Intent(SvmParametersActivity.this, TrainSvmActivity.class);
-//                startActivity(intent);
             }
         });
     }

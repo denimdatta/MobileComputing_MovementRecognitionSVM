@@ -24,8 +24,15 @@ class Constants {
     static final String TABLE_COLUMN_LABEL= "ACTIVITY_LABEL";
     static final String ACCELEROMETER_ACTION = "ACCELEROMETER";
     static final int LIMIT = 50;
+    static final int PREDICTION_LIMIT = 20;
     static final int DELAY = 100;
     static final int REPEAT = 20;
     static final int FEATURES = 6;
     static final String MODELFILE = "SVM_model.txt";
+    static final int RUN_LABEL = 1;
+    static final String RUN_VALUE = "Run";
+    static final int WALK_LABEL = 2;
+    static final String WALK_VALUE = "Walk";
+    static final int JUMP_LABEL = 3;
+    static final String JUMP_VALUE = "Jump";
 }

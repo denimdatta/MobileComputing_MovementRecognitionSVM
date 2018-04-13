@@ -264,22 +264,22 @@ class UtilitySVMTrain {
                 }
 
                 String act = c.getString(3 * Constants.LIMIT + 1);
-                if (act.equalsIgnoreCase("RUN")) {
-                    label = 1;
-                } else if (act.equalsIgnoreCase("WALK")) {
-                    label = 2;
-                } else if (act.equalsIgnoreCase("JUMP")) {
-                    label = 3;
+                if (act.equalsIgnoreCase(Constants.RUN_VALUE)) {
+                    label = Constants.RUN_LABEL;
+                } else if (act.equalsIgnoreCase(Constants.WALK_VALUE)) {
+                    label = Constants.WALK_LABEL;
+                } else if (act.equalsIgnoreCase(Constants.JUMP_VALUE)) {
+                    label = Constants.JUMP_LABEL;
                 }
 
                 Mean mu = new Mean();
                 StandardDeviation sd = new StandardDeviation();
                 double[] features = {
                         mu.evaluate(x_f, 0, x_f.length),
-                        mu.evaluate(y_f, 0, y_f.length),
-                        mu.evaluate(z_f, 0, z_f.length),
                         sd.evaluate(x_f),
+                        mu.evaluate(y_f, 0, y_f.length),
                         sd.evaluate(y_f),
+                        mu.evaluate(z_f, 0, z_f.length),
                         sd.evaluate(z_f)
                 };
 

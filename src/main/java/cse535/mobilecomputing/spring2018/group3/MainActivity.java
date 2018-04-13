@@ -93,11 +93,27 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (runData < Constants.REPEAT || walkData < Constants.REPEAT || jumpData < Constants.REPEAT) {
-                    Toast.makeText(MainActivity.this, "Insufficient Data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Insufficient Data. Please collect 20 Instances for each Activity Type", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 Intent intent = new Intent(MainActivity.this, SvmParametersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button predictBtn = (Button) findViewById(R.id.PredictBtn);
+        predictBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                File model = new File(Constants.filePath+Constants.MODELFILE);
+                if(!model.exists()){
+                    Toast.makeText(MainActivity.this, "Please Train on collected data first to get the Model", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intent = new Intent(MainActivity.this, PredictionActivity.class);
                 startActivity(intent);
             }
         });
@@ -127,6 +143,16 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+
+    /**
+     * Override onDestroy
+     * on Destroy, receivers will be unregistered and DB will be closed.
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
     /**
      * This function checks if the required permission is granted
