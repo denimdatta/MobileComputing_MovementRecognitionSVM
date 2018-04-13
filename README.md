@@ -4,9 +4,12 @@
 
 Using SVM, classify among Run, Walk and Jump with Accelerometer sensor data
 
+- Required
+  -  [libsvm library](https://github.com/cjlin1/libsvm/tree/master/java)
+  -  [Apache Commons Math library](http://commons.apache.org/proper/commons-math/download_math.cgi)
 
 <details>
-  <summary> Used the <b>LIBSVM jar</b> </summary> 
+  <summary> Used the <b>LIBSVM library</b> </summary> 
   <p>
     <table>
       <tbody>
