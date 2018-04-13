@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DataCollectActivity" />
-        <activity android:name=".DataCollectStatusActivity" />
+        <activity android:name=".DataCollectStatusActivity" android:theme="@style/Theme.Transparent"/>
         <activity android:name=".SvmParametersActivity" />
         <activity android:name=".TrainSvmActivity" />
 

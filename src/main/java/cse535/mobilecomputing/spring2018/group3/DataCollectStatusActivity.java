@@ -1,5 +1,6 @@
 package cse535.mobilecomputing.spring2018.group3;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataCollectStatusActivity extends AppCompatActivity {
+public class DataCollectStatusActivity extends Activity {
 
     static SQLiteDatabase db = null;
     int count;
