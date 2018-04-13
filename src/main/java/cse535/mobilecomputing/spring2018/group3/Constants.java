@@ -26,5 +26,6 @@ public class Constants {
     static final int LIMIT = 50;
     static final int DELAY = 100;
     static final int REPEAT = 20;
-    public static final String EMPTY_TEXT = "";
+    static final int FEATURES = 6;
+    static final String MODELFILE = "SVM_model.txt";
 }

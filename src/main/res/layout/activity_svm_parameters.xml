@@ -21,10 +21,10 @@
 
     <TextView
         android:id="@+id/SVMTypeTV"
-        android:layout_width="115dp"
-        android:layout_height="23dp"
+        android:layout_width="170dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:text="SVM Type :"
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
@@ -34,10 +34,10 @@
 
     <TextView
         android:id="@+id/KernelTypeTV"
-        android:layout_width="115dp"
+        android:layout_width="170dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:text="Kernel Type :"
         android:textAlignment="viewEnd"
         android:textColor="@android:color/background_light"
@@ -47,11 +47,11 @@
 
     <TextView
         android:id="@+id/CostNuTV"
-        android:layout_width="115dp"
+        android:layout_width="170dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Cost/NU :"
+        android:layout_marginTop="15dp"
+        android:text="Cost :"
         android:textAlignment="viewEnd"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
@@ -59,41 +59,120 @@
         app:layout_constraintTop_toBottomOf="@+id/KernelTypeTV" />
 
     <TextView
-        android:id="@+id/kcvTV"
-        android:layout_width="115dp"
-        android:layout_height="42dp"
+        android:id="@+id/gammaTV"
+        android:layout_width="170dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Cross Validation  \nFold :"
+        android:layout_marginTop="15dp"
+        android:text="Gamma :"
         android:textAlignment="viewEnd"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CostNuTV" />
 
+    <TextView
+        android:id="@+id/kcvTV"
+        android:layout_width="170dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="Cross Validation  \nFold :"
+        android:textAlignment="viewEnd"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gammaTV" />
+
+    <Spinner
+        android:id="@+id/svmSpn"
+        android:layout_width="120dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:entries="@array/svm_type_label"
+        android:popupBackground="#708090"
+        app:layout_constraintStart_toEndOf="@+id/SVMTypeTV"
+        app:layout_constraintTop_toBottomOf="@+id/space1" />
+
+    <Spinner
+        android:id="@+id/kernelSpn"
+        android:layout_width="120dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:entries="@array/kernel_type_label"
+        android:popupBackground="#708090"
+        app:layout_constraintStart_toEndOf="@+id/KernelTypeTV"
+        app:layout_constraintTop_toBottomOf="@+id/svmSpn" />
+
+    <EditText
+        android:id="@+id/costNuTxt"
+        android:layout_width="120dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@+id/CostNuTV"
+        app:layout_constraintTop_toBottomOf="@+id/kernelSpn" />
+
+    <EditText
+        android:id="@+id/gammaTxt"
+        android:layout_width="120dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/gammaTV"
+        app:layout_constraintTop_toBottomOf="@+id/costNuTxt" />
+
+    <Spinner
+        android:id="@+id/kcvSpn"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray"
+        android:entries="@array/cross_validation_label"
+        android:popupBackground="#708090"
+        app:layout_constraintStart_toEndOf="@+id/kcvTV"
+        app:layout_constraintTop_toBottomOf="@+id/gammaTxt" />
+
     <Button
         android:id="@+id/TrainSVMBtn"
         android:layout_width="118dp"
         android:layout_height="51dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
         android:background="@android:color/holo_green_dark"
         android:backgroundTint="@android:color/holo_green_light"
         android:text="@string/trainSVM"
-        app:layout_constraintBottom_toTopOf="@+id/space2"
+        app:layout_constraintBottom_toTopOf="@+id/trainResultTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kcvTV" />
 
-    <Space
-        android:id="@+id/space2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
+    <TextView
+        android:id="@+id/trainResultTV"
+        android:layout_width="327dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
