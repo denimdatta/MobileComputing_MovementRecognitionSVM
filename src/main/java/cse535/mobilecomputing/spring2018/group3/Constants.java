@@ -11,7 +11,7 @@ import java.io.File;
  * @author Group3 CSE535 Spring 2018
  */
 
-public class Constants {
+class Constants {
     static final String filePath = Environment.getExternalStorageDirectory() +
             File.separator + "Android" + File.separator + "data" + File.separator +
             "CSE535_ASSIGNMENT3" + File.separator;

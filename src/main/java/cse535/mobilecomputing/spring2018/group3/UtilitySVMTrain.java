@@ -1,9 +1,5 @@
 package cse535.mobilecomputing.spring2018.group3;
 
-/**
- * Modified the svm_train.java from libsvm library
- * modified by: Group3
- */
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,14 +11,14 @@ import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * Minor Modification of svm_train.java from libsvm library
+ * modified by: Group3
+ * This class train the data using SVM from libsvm library
+ */
 class UtilitySVMTrain {
     private svm_parameter param;        // set by parse_command_line
     private svm_problem prob;        // set by read_problem
-    private svm_model model;
-    //    private String input_file_name;        // set by parse_command_line
-//    private String model_file_name;        // set by parse_command_line
-    private String error_msg;
     private int cross_validation;
     private int nr_fold;
     private double accuracy = -1;
@@ -103,6 +99,7 @@ class UtilitySVMTrain {
     private void run(String argv[]) throws IOException {
         parse_command_line(argv);
         read_problem();
+        String error_msg;
         error_msg = svm.svm_check_parameter(prob, param);
 
         if (error_msg != null) {
@@ -110,6 +107,7 @@ class UtilitySVMTrain {
             System.exit(1);
         }
 
+        svm_model model;
         if (cross_validation != 0) {
             do_cross_validation();
             model = svm.svm_train(prob, param);
@@ -245,18 +243,16 @@ class UtilitySVMTrain {
     // read in a problem (in svmlight format)
 
     private void read_problem() throws IOException {
-        Vector<Double> vy = new Vector<Double>();
-        Vector<svm_node[]> vx = new Vector<svm_node[]>();
+        Vector<Double> vy = new Vector<>();
+        Vector<svm_node[]> vx = new Vector<>();
         int max_index = 0;
 
-        StringBuilder content = new StringBuilder();
         Utility.createDB();
         SQLiteDatabase db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
         Cursor c = db.rawQuery("SELECT * FROM " + Constants.TABLE_NAME, null);
         if (c.moveToFirst()) {
             do {
                 int label = 0;
-                int columnLength = c.getColumnCount();
                 double[] x_f = new double[Constants.LIMIT];
                 double[] y_f = new double[Constants.LIMIT];
                 double[] z_f = new double[Constants.LIMIT];
@@ -296,7 +292,8 @@ class UtilitySVMTrain {
                         feat[j].index = j + 1;
                         feat[j].value = features[j];
                     }
-                    if (m > 0) max_index = Math.max(max_index, feat[m - 1].index);
+                    // if (m > 0)
+                        max_index = Math.max(max_index, feat[m - 1].index);
                     vx.addElement(feat);
                 }
             } while (c.moveToNext());

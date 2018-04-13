@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.widget.Toast;
 
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
@@ -14,16 +13,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by ddat0 on 07-04-2018.
+ *
  */
 
-public class Utility {
+class Utility {
 
-    public static boolean createDB() {
+    static void createDB() {
         try {
             File dir = new File(Constants.filePath);
             if (!dir.exists()) {
-                dir.mkdir();
+                if(!dir.mkdir()) {
+                    return;
+                }
             }
 
             StringBuilder sqlQuery = new StringBuilder("create table " + Constants.TABLE_NAME +
@@ -56,17 +57,14 @@ public class Utility {
             } finally {
                 db.endTransaction();
                 db.close();
-                db = null;
             }
         } catch (SQLException exp) {
-            return false;
+            // Exception
         }
-
-        return true;
     }
 
 
-    public static void convertDataToSVM() {
+    static void convertDataToSVM() {
         File file = new File(Constants.filePath + Constants.DBNAME + ".txt");
         StringBuilder content = new StringBuilder();
         Utility.createDB();
@@ -76,7 +74,7 @@ public class Utility {
             do {
 //                float x = 0, y = 0, z = 0;
                 int label = 0;
-                int columnLength = c.getColumnCount();
+//                int columnLength = c.getColumnCount();
                 double[] x_f = new double[Constants.LIMIT];
                 double[] y_f = new double[Constants.LIMIT];
                 double[] z_f = new double[Constants.LIMIT];
@@ -123,7 +121,7 @@ public class Utility {
         c.close();
         db.close();
 
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         try {
             fos = new FileOutputStream(file);
             fos.write(content.toString().getBytes());

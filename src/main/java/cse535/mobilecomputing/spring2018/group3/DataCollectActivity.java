@@ -2,26 +2,23 @@ package cse535.mobilecomputing.spring2018.group3;
 
 import android.content.Intent;
 import android.database.DatabaseUtils;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DataCollectActivity extends AppCompatActivity {
 
     static SQLiteDatabase db = null;
     static long runData = 0, walkData = 0, jumpData = 0;
     Button runBtn, walkBtn, jumpBtn;
-    DateFormat dateForm = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+    DateFormat dateForm = new SimpleDateFormat("yyyyMMdd_HHmmssSSS", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
