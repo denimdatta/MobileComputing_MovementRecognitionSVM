@@ -106,7 +106,6 @@ public class DataCollectActivity extends AppCompatActivity {
                 Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.walk)});
         jumpData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                 Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.jump)});
-        System.out.println("[TEST]: " + runData + "::" + walkData + "::" + jumpData);
         if (db != null){
             db.close();
             db = null;

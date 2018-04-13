@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.walk)});
                 jumpData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.jump)});
-                System.out.println("[TEST]: " + runData + "::" + walkData + "::" + jumpData);
                 if (db != null) {
                     db.close();
                     db = null;
@@ -166,9 +165,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!permissionsList.isEmpty()) {
-            for (String p : permissionsList) {
-                System.out.println("[TEST_P] " + p);
-            }
             String msg = "All the Permissions are required for the App to run\n" +
                     "Change the permission from Settings > App > Group3 > Permissions";
             Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();

@@ -10,6 +10,6 @@
     <string name="runBtn">Run  (%1$d/%2$d)</string>
     <string name="walkBtn">Walk  (%1$d/%2$d)</string>
     <string name="jumpBtn">Jump  (%1$d/%2$d)</string>
-    <string name="collectionProgress">%1$s: In Progress</string>
-    <string name="collectionComplete">%1$s: Complete</string>
+    <string name="collectionProgress">%1$s: In Progress\n(Back key Disabled)</string>
+    <string name="collectionComplete">%1$s: Complete\n(Back key Enabled)</string>
 </resources>
