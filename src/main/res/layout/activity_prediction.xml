@@ -5,27 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="cse535.mobilecomputing.spring2018.group3.TrainSvmActivity">
+    tools:context="cse535.mobilecomputing.spring2018.group3.PredictionActivity">
 
     <TextView
-        android:id="@+id/parametersTV"
-        android:layout_width="356dp"
-        android:layout_height="182dp"
+        android:id="@+id/messageTV"
+        android:layout_width="247dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:text="@string/predictionMsg"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/predictionTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TrainStatusTV"
-        android:layout_width="356dp"
-        android:layout_height="65dp"
+        android:id="@+id/predictionTV"
+        android:layout_width="235dp"
+        android:layout_height="94dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parametersTV" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

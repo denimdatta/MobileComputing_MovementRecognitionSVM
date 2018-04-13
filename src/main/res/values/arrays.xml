@@ -1,0 +1,30 @@
+<resources>
+    <string-array name="svm_type_label">
+        <item>C SVC</item>
+        <item>Nu SVC</item>
+    </string-array>
+
+    <integer-array name="svm_type_value">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="kernel_type_label">
+        <item>Linear</item>
+        <item>Polynomial</item>
+        <item>Radial Basis</item>
+    </string-array>
+
+    <integer-array name="kernel_type_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="cross_validation_label">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+</resources>

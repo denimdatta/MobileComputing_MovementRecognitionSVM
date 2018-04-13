@@ -87,18 +87,33 @@ public class MainActivity extends AppCompatActivity {
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.walk)});
                 jumpData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.jump)});
-                System.out.println("[TEST]: " + runData + "::" + walkData + "::" + jumpData);
                 if (db != null) {
                     db.close();
                     db = null;
                 }
 
                 if (runData < Constants.REPEAT || walkData < Constants.REPEAT || jumpData < Constants.REPEAT) {
-                    Toast.makeText(MainActivity.this, "Insufficient Data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Insufficient Data. Please collect 20 Instances for each Activity Type", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 Intent intent = new Intent(MainActivity.this, SvmParametersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button predictBtn = (Button) findViewById(R.id.PredictBtn);
+        predictBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                File model = new File(Constants.filePath+Constants.MODELFILE);
+                if(!model.exists()){
+                    Toast.makeText(MainActivity.this, "Please Train on collected data first to get the Model", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intent = new Intent(MainActivity.this, PredictionActivity.class);
                 startActivity(intent);
             }
         });
@@ -128,6 +143,16 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+
+    /**
+     * Override onDestroy
+     * on Destroy, receivers will be unregistered and DB will be closed.
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
     /**
      * This function checks if the required permission is granted
@@ -166,9 +191,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!permissionsList.isEmpty()) {
-            for (String p : permissionsList) {
-                System.out.println("[TEST_P] " + p);
-            }
             String msg = "All the Permissions are required for the App to run\n" +
                     "Change the permission from Settings > App > Group3 > Permissions";
             Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();

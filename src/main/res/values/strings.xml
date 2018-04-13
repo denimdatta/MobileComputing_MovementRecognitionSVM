@@ -2,7 +2,8 @@
     <string name="app_name">Group3</string>
     <string name="collect">Collect Data</string>
     <string name="clear">Clear Data</string>
-    <string name="classify">Classify Data</string>
+    <string name="classify">Train Data</string>
+    <string name="predict">Predict RealTime Data</string>
     <string name="trainSVM">Train SVM</string>
     <string name="run">Run</string>
     <string name="walk">Walk</string>
@@ -10,6 +11,9 @@
     <string name="runBtn">Run  (%1$d/%2$d)</string>
     <string name="walkBtn">Walk  (%1$d/%2$d)</string>
     <string name="jumpBtn">Jump  (%1$d/%2$d)</string>
-    <string name="collectionProgress">%1$s: In Progress</string>
-    <string name="collectionComplete">%1$s: Complete</string>
+    <string name="collectionProgress">%1$s: In Progress\n(Back key Disabled)</string>
+    <string name="collectionComplete">%1$s: Complete\n(Back key Enabled)</string>
+    <string name="predictionMsg">Please continue activity \nfor atleast 2 sec</string>
+    <string name="predictionActivityMsg">Your current activity \n\n</string>
+    <string name="predictionActivityError">Error\nCould not predict current activity</string>
 </resources>
