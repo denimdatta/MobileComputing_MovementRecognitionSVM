@@ -4,6 +4,7 @@
     <string name="clear">Clear Data</string>
     <string name="classify">Train Data</string>
     <string name="predict">Predict RealTime Data</string>
+    <string name="graphPlot">Plot Graph</string>
     <string name="trainSVM">Train SVM</string>
     <string name="run">Run</string>
     <string name="walk">Walk</string>

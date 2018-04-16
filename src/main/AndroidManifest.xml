@@ -26,6 +26,7 @@
             android:theme="@style/Theme.Transparent" />
         <activity android:name=".SvmParametersActivity" />
         <activity android:name=".PredictionActivity" />
+        <activity android:name=".GraphplotActivity"/>
 
         <service
             android:name=".AccelerometerService"

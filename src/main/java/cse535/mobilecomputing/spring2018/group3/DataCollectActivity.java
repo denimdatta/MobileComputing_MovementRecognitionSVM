@@ -98,11 +98,11 @@ public class DataCollectActivity extends AppCompatActivity {
             db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
         }
         runData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
-                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.run)});
+                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{Constants.RUN_VALUE});
         walkData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
-                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.walk)});
+                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{Constants.WALK_VALUE});
         jumpData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
-                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.jump)});
+                Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{Constants.JUMP_VALUE});
         if (db != null){
             db.close();
             db = null;
