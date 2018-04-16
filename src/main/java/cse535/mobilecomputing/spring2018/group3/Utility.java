@@ -11,6 +11,7 @@ import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  *
@@ -61,6 +62,48 @@ class Utility {
         } catch (SQLException exp) {
             // Exception
         }
+    }
+
+
+    static HashMap<String, double[][]> fromDatabaseGetActivityValues() {
+        HashMap<String, double[][]> result = new HashMap<String, double[][]>();
+        createDB();
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
+        String[] activities = {
+                Constants.WALK_VALUE,
+                Constants.RUN_VALUE,
+                Constants.JUMP_VALUE
+        };
+        for (String activity : activities) {
+            Cursor c = db.query(Constants.TABLE_NAME, null, Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{activity}, null,null,null);
+            double[][] X = new double[Constants.REPEAT][Constants.LIMIT];
+            double[][] Y = new double[Constants.REPEAT][Constants.LIMIT];
+            double[][] Z = new double[Constants.REPEAT][Constants.LIMIT];
+            int index = 0;
+            if (c.moveToFirst()) {
+                do {
+                    double[] x_f = new double[Constants.LIMIT];
+                    double[] y_f = new double[Constants.LIMIT];
+                    double[] z_f = new double[Constants.LIMIT];
+                    for (int i = 0; i < Constants.LIMIT; i++) {
+                        int k = 3 * i + 1;
+                        x_f[i] = (double) c.getFloat(k);
+                        y_f[i] = (double) c.getFloat(k + 1);
+                        z_f[i] = (double) c.getFloat(k + 2);
+                    }
+                    X[index] = x_f;
+                    Y[index] = y_f;
+                    Z[index] = z_f;
+                    index++;
+                } while (c.moveToNext());
+            }
+            result.put(activity.toUpperCase()+"_X", X);
+            result.put(activity.toUpperCase()+"_Y", Y);
+            result.put(activity.toUpperCase()+"_Z", Z);
+            c.close();
+        }
+        db.close();
+        return result;
     }
 
 

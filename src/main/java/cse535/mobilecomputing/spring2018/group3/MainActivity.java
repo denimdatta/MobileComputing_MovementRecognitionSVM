@@ -117,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button plotBtn = (Button) findViewById(R.id.GraphPlotBtn);
+        plotBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GraphplotActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
