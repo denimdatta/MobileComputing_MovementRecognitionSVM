@@ -5,9 +5,9 @@
 Using SVM, classify among Run, Walk and Jump with Accelerometer sensor data
 
 - Required
-  -  [libsvm library](https://github.com/cjlin1/libsvm/tree/master/java)
-  -  [Apache Commons Math library](http://commons.apache.org/proper/commons-math/download_math.cgi)
-  -  [plotly.js](https://cdn.plot.ly/plotly-latest.min.js)
+  -  [libsvm library](https://github.com/cjlin1/libsvm/tree/master/java)  -- as library
+  -  [Apache Commons Math library](http://commons.apache.org/proper/commons-math/download_math.cgi)  -- as library
+  -  [plotly.js](https://cdn.plot.ly/plotly-latest.min.js)  -- to place in assets directory
 
 <details>
   <summary> Used the <b>LIBSVM library</b> </summary> 
