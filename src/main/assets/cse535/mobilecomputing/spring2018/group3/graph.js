@@ -122,5 +122,5 @@ function graphplot() {
         }
     };
 
-    Plotly.newPlot('graph', allLines, frame, {displayModeBar: false});
+    Plotly.newPlot('graph', allLines, frame, {displayModeBar: true});
 }
