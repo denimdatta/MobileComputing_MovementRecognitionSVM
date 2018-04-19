@@ -19,7 +19,7 @@ function graphplot() {
             z: z,
             mode: 'lines',
             marker: {
-                color: 'red',
+                color: 'cyan',
                 size: 12,
                 symbol: 'circle',
                 line: {
@@ -28,7 +28,7 @@ function graphplot() {
                 }
             },
             line: {
-                color: 'red',
+                color: 'cyan',
                 width: 1
             },
             type: 'scatter3d',
@@ -53,7 +53,7 @@ function graphplot() {
             z: z,
             mode: 'lines',
             marker: {
-                color: 'blue',
+                color: 'green',
                 size: 12,
                 symbol: 'circle',
                 line: {
@@ -62,7 +62,7 @@ function graphplot() {
                 }
             },
             line: {
-                color: 'blue',
+                color: 'green',
                 width: 1
             },
             type: 'scatter3d',
@@ -87,7 +87,7 @@ function graphplot() {
             z: z,
             mode: 'lines',
             marker: {
-                color: 'green',
+                color: 'red',
                 size: 12,
                 symbol: 'circle',
                 line: {
@@ -96,7 +96,7 @@ function graphplot() {
                 }
             },
             line: {
-                color: 'green',
+                color: 'red',
                 width: 1
             },
             type: 'scatter3d',
@@ -122,5 +122,5 @@ function graphplot() {
         }
     };
 
-    Plotly.newPlot('graph', allLines, frame, {displayModeBar: false});
+    Plotly.newPlot('graph', allLines, frame, {displayModeBar: true});
 }

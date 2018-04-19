@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         classifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!grantPermission()) {
+                    return;
+                }
+
                 if (db == null) {
                     Utility.createDB();
                     db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
@@ -106,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
         predictBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!grantPermission()) {
+                    return;
+                }
 
                 File model = new File(Constants.filePath+Constants.MODELFILE);
                 if(!model.exists()){
@@ -122,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
         plotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!grantPermission()) {
+                    return;
+                }
+
                 Intent intent = new Intent(MainActivity.this, GraphplotActivity.class);
                 startActivity(intent);
             }
