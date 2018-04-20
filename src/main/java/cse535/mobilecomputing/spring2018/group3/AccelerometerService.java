@@ -11,7 +11,7 @@ import android.os.IBinder;
 
 /**
  * AccelerometerService
- * Connects to Accelerometer Sensor, and provide data in 1Hz frequency
+ * Connects to Accelerometer Sensor, and provide data in 10Hz frequency
  *
  * @author Group3 CSE535 Spring 2018
  */
@@ -24,7 +24,7 @@ public class AccelerometerService extends Service implements SensorEventListener
         Sensor mySensor = event.sensor;
         long curTime = System.currentTimeMillis();
 
-        // enforcing delay of 1 Sec between consecutive sensor data
+        // enforcing delay of 0.1 Sec between consecutive sensor data
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER &&
                 (curTime - lastTime) >= Constants.DELAY) {
             lastTime = curTime;

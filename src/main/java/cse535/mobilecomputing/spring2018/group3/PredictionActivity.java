@@ -20,6 +20,9 @@ import java.io.IOException;
 
 import static android.text.Spanned.SPAN_INCLUSIVE_INCLUSIVE;
 
+/**
+ * @author Group3 CSE535 Spring 2018
+ */
 public class PredictionActivity extends AppCompatActivity {
 
     int index = 0;
@@ -36,6 +39,7 @@ public class PredictionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prediction);
 
+        // Register BroadcastReceiver
         if (!isSensorReceiverRegistered) {
             registerReceiver(sdReceiver, intentFilterSensor);
             startService(new Intent(PredictionActivity.this, AccelerometerService.class));
@@ -55,6 +59,7 @@ public class PredictionActivity extends AppCompatActivity {
                 case Constants.ACCELEROMETER_ACTION:
                     long curTime = System.currentTimeMillis();
                     if (index < Constants.PREDICTION_LIMIT) {
+                        // Get realtime data
                         if((curTime - lastTime) >= Constants.DELAY) {
                             x_data[index] = (double)intent.getFloatExtra("valX", 0);
                             y_data[index] = (double)intent.getFloatExtra("valY", 0);
@@ -64,6 +69,7 @@ public class PredictionActivity extends AppCompatActivity {
                             lastTime = curTime;
                         }
                     } else {
+                        // calculate mean and variance (used as feature)
                         Mean mu = new Mean();
                         StandardDeviation sd = new StandardDeviation();
 
@@ -76,6 +82,7 @@ public class PredictionActivity extends AppCompatActivity {
                                 sd.evaluate(z_data)
                         };
 
+                        // Call the SVMPrediction to get the predicted result and display
                         String predictedActivity = null;
                         try {
                             predictedActivity = UtilitySVMPredict.prediction(feature);
@@ -88,6 +95,7 @@ public class PredictionActivity extends AppCompatActivity {
                         if(predictedActivity != null) {
                             String msg = getString(R.string.predictionActivityMsg);
 
+                            // SpannableString is used to give the display result different Color and size
                             SpannableString span1 = new SpannableString(msg);
                             span1.setSpan(new RelativeSizeSpan(1f), 0, msg.length(), SPAN_INCLUSIVE_INCLUSIVE);
 

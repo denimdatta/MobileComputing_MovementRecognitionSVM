@@ -261,6 +261,7 @@ class UtilitySVMTrain {
         int train_count = Constants.REPEAT - Constants.TESTCOUNT;
         int rCount = 0, wCount = 0, jCount = 0;
 
+        // Get data from DB
         Utility.createDB();
         SQLiteDatabase db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
         Cursor c = db.rawQuery("SELECT * FROM " + Constants.TABLE_NAME, null);
@@ -296,6 +297,7 @@ class UtilitySVMTrain {
                         isTestData = true;
                 }
 
+                // Extract Features (Mean and Standard Deviation)
                 Mean mu = new Mean();
                 StandardDeviation sd = new StandardDeviation();
                 double[] features = {

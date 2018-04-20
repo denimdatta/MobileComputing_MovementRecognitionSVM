@@ -11,6 +11,9 @@ import android.widget.CompoundButton;
 
 import java.util.HashMap;
 
+/**
+ * @author Group3 CSE535 Spring 2018
+ */
 public class GraphplotActivity extends AppCompatActivity {
     WebView plotArea;
     double[][] walkX, walkY, walkZ, runX, runY, runZ, jumpX, jumpY, jumpZ;
@@ -20,8 +23,10 @@ public class GraphplotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphplot);
 
+        // Get activity data from database
         final HashMap<String, double[][]> values = Utility.fromDatabaseGetActivityValues();
 
+        // by default, all three type of check box is considered checked
         walkX = values.get(Constants.WALK_VALUE.toUpperCase() + "_X");
         walkY = values.get(Constants.WALK_VALUE.toUpperCase() + "_Y");
         walkZ = values.get(Constants.WALK_VALUE.toUpperCase() + "_Z");
@@ -34,6 +39,8 @@ public class GraphplotActivity extends AppCompatActivity {
 
         plotGraph();
 
+        // Walk CheckBox: if checked, set the data from selected data, else set null
+        // no modification for Run and Jump data, and plot graph
         CheckBox walkChk = (CheckBox) findViewById(R.id.walkChk);
         walkChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -51,6 +58,8 @@ public class GraphplotActivity extends AppCompatActivity {
             }
         });
 
+        // Run CheckBox: if checked, set the data from selected data, else set null
+        // no modification for Walk and Jump data, and plot graph
         CheckBox runChk = (CheckBox) findViewById(R.id.runChk);
         runChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -68,6 +77,8 @@ public class GraphplotActivity extends AppCompatActivity {
             }
         });
 
+        // Jump CheckBox: if checked, set the data from selected data, else set null
+        // no modification for Run and Walk data, and plot graph
         CheckBox jumpChk = (CheckBox) findViewById(R.id.jumpChk);
         jumpChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,8 +97,12 @@ public class GraphplotActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Plots graph using Javascript
+     */
     private void plotGraph() {
-
+        // Get the webView and load html.
+        // The html calls JavaScript function which plots the graph using plotly.js library
         plotArea = (WebView) findViewById(R.id.graphplotAreaWeb);
         plotArea.getSettings().setJavaScriptEnabled(true);
         plotArea.setWebViewClient(new WebViewClient());
@@ -96,6 +111,9 @@ public class GraphplotActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Set data to pass to the JavaScript
+     */
     class ActivityValues {
         Context mContext;
 

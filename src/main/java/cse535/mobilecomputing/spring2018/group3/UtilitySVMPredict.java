@@ -28,7 +28,9 @@ class UtilitySVMPredict {
             }
             double predicted = predict(model, feature, predict_probability);
 
-            String predictedActivity = null;
+            String predictedActivity;
+
+            // Based on predicted value, set the Activity Name
             switch ((int) Math.round(predicted)) {
                 case Constants.RUN_LABEL:
                     predictedActivity = Constants.RUN_VALUE;
