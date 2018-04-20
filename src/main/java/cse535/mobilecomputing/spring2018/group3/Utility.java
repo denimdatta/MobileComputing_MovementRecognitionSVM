@@ -76,9 +76,10 @@ class Utility {
         };
         for (String activity : activities) {
             Cursor c = db.query(Constants.TABLE_NAME, null, Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{activity}, null,null,null);
-            double[][] X = new double[Constants.REPEAT][Constants.LIMIT];
-            double[][] Y = new double[Constants.REPEAT][Constants.LIMIT];
-            double[][] Z = new double[Constants.REPEAT][Constants.LIMIT];
+            int size = c.getCount();
+            double[][] X = new double[size][Constants.LIMIT];
+            double[][] Y = new double[size][Constants.LIMIT];
+            double[][] Z = new double[size][Constants.LIMIT];
             int index = 0;
             if (c.moveToFirst()) {
                 do {
