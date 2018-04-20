@@ -23,8 +23,8 @@ class UtilitySVMTrain {
     private int cross_validation;
     private int nr_fold;
     private double accuracy = -1;
-    Vector<String> testLabel = new Vector<>();
-    Vector<double[]> testFeature = new Vector<>();
+    private Vector<String> testLabel = new Vector<>();
+    private Vector<double[]> testFeature = new Vector<>();
 
     private static svm_print_interface svm_print_null = new svm_print_interface() {
         public void print(String s) {

@@ -71,24 +71,31 @@ public class SvmParametersActivity extends AppCompatActivity {
                         System.out.println("[ERROR]: " + CustomErrorMsg);
                         throw new NumberFormatException(CustomErrorMsg.toString());
                     }
-                    String options = new StringBuilder("-q -s ").append(svmType).append(" -t ").append(kernelType)
-                            .append(CostNuOpt + cost_nu).append(" -g ").append(gamma).append(" -v ").append(crossValid).toString();
+                    String options = "-q -s " + svmType + " -t " + kernelType + CostNuOpt + cost_nu
+                            + " -g " + gamma  + " -v "+ crossValid;
 
 //                    double accuracy = UtilitySVMTrain.train("-q -s 1 -v 5 test".split(" "));
                     double accuracy = UtilitySVMTrain.train(options.split("\\s+"));
                     StringBuilder result = new StringBuilder("Result\nAccuracy: " + Math.round(accuracy * 100.0) / 100.0 + "%\n\n");
-                    result.append(svmTypeSpn.getSelectedItem().toString() + "    SVM Type\n");
-                    result.append(kernelTypeSpn.getSelectedItem().toString() + " Kernel Function\n");
+                    result.append(svmTypeSpn.getSelectedItem().toString());
+                    result.append("    SVM Type\n");
+                    result.append(kernelTypeSpn.getSelectedItem().toString());
+                    result.append(" Kernel Function\n");
                     if (CostNuOpt.equalsIgnoreCase(" -n ")) {
                         result.append("Nu Parameter:  ");
                     } else {
                         result.append("Cost Parameter:  ");
                     }
-                    result.append(cost_nu + "\nGamma in Kernel:  " + gamma + "\n");
-                    result.append(kcvTypeSpn.getSelectedItem().toString() + "-fold Cross Validation Technique\n");
+                    result.append(cost_nu);
+                    result.append("\nGamma in Kernel:  ");
+                    result.append(gamma);
+                    result.append("\n");
+                    result.append(kcvTypeSpn.getSelectedItem().toString());
+                    result.append("-fold Cross Validation Technique\n");
                     double testPerc = ((double) Constants.TESTCOUNT * 100) / Constants.REPEAT;
                     double trainPerc = 100 - testPerc;
-                    result.append("Train-Test split ratio: " + trainPerc + "%-" + testPerc + "%\n");
+                    String TrTsResult = "Train-Test split ratio: " + trainPerc + "%-" + testPerc + "%\n";
+                    result.append(TrTsResult);
                     resultTV.setText(result.toString());
                 } catch (IOException | NumberFormatException ex) {
                     StringBuilder error = new StringBuilder("Error in SVM train");

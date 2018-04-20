@@ -1,11 +1,9 @@
 package cse535.mobilecomputing.spring2018.group3;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.CheckBox;
@@ -34,7 +32,7 @@ public class GraphplotActivity extends AppCompatActivity {
         jumpY = values.get(Constants.JUMP_VALUE.toUpperCase() + "_Y");
         jumpZ = values.get(Constants.JUMP_VALUE.toUpperCase() + "_Z");
 
-        plotGraph(walkX, walkY, walkZ, runX, runY, runZ, jumpX, jumpY, jumpZ);
+        plotGraph();
 
         CheckBox walkChk = (CheckBox) findViewById(R.id.walkChk);
         walkChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -49,7 +47,7 @@ public class GraphplotActivity extends AppCompatActivity {
                     walkY = null;
                     walkZ = null;
                 }
-                plotGraph(walkX, walkY, walkZ, runX, runY, runZ, jumpX, jumpY, jumpZ);
+                plotGraph();
             }
         });
 
@@ -66,7 +64,7 @@ public class GraphplotActivity extends AppCompatActivity {
                     runY = null;
                     runZ = null;
                 }
-                plotGraph(walkX, walkY, walkZ, runX, runY, runZ, jumpX, jumpY, jumpZ);
+                plotGraph();
             }
         });
 
@@ -83,14 +81,12 @@ public class GraphplotActivity extends AppCompatActivity {
                     jumpY = null;
                     jumpZ = null;
                 }
-                plotGraph(walkX, walkY, walkZ, runX, runY, runZ, jumpX, jumpY, jumpZ);
+                plotGraph();
             }
         });
     }
 
-    private void plotGraph(final double[][] walkx, final double[][] walky, final double[][] walkz,
-                           final double[][] runx, final double[][] runy, final double[][] runz,
-                           final double[][] jumpx, final double[][] jumpy, final double[][] jumpz) {
+    private void plotGraph() {
 
         plotArea = (WebView) findViewById(R.id.graphplotAreaWeb);
         plotArea.getSettings().setJavaScriptEnabled(true);

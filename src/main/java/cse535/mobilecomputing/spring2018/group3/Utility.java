@@ -66,7 +66,7 @@ class Utility {
 
 
     static HashMap<String, double[][]> fromDatabaseGetActivityValues() {
-        HashMap<String, double[][]> result = new HashMap<String, double[][]>();
+        HashMap<String, double[][]> result = new HashMap<>();
         createDB();
         SQLiteDatabase db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
         String[] activities = {
@@ -106,7 +106,7 @@ class Utility {
         return result;
     }
 
-
+    /*
     static void convertDataToSVM() {
         File file = new File(Constants.filePath + Constants.DBNAME + ".txt");
         StringBuilder content = new StringBuilder();
@@ -173,4 +173,5 @@ class Utility {
             // Exception
         }
     }
+    */
 }
