@@ -18,6 +18,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Group3 CSE535 Spring 2018
+ */
 public class MainActivity extends AppCompatActivity {
 
     static SQLiteDatabase db = null;
@@ -27,17 +30,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check for permission
         if (grantPermission()) {
             checkDB();
         }
 
+        // Clears Data
         Button clearDataBtn = (Button) findViewById(R.id.ClearDataBtn);
         clearDataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Check for permission
                 if (!grantPermission()) {
                     return;
                 }
+
                 File dir = new File(Constants.filePath);
                 if (!dir.exists()) {
                     Toast.makeText(MainActivity.this, "Data Cleared", Toast.LENGTH_LONG).show();
@@ -61,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        // Collect Data
         Button collectDataBtn = (Button) findViewById(R.id.CollectDataBtn);
         collectDataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // SVM Classification
         Button classifyBtn = (Button) findViewById(R.id.ClassifyBtn);
         classifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                     Utility.createDB();
                     db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
                 }
+
+                // Check if sufficient data collected. If not display message, and does not
+                // proceed to SVM training
                 runData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
                         Constants.TABLE_COLUMN_LABEL + " = ?", new String[]{getString(R.string.run)});
                 walkData = DatabaseUtils.queryNumEntries(db, Constants.TABLE_NAME,
@@ -106,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Realtime Data Prediction
         Button predictBtn = (Button) findViewById(R.id.PredictBtn);
         predictBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Check if SVM model is trained. If not display message, and does not
+                // proceed to realtime prediction
                 File model = new File(Constants.filePath+Constants.MODELFILE);
                 if(!model.exists()){
                     Toast.makeText(MainActivity.this, "Please Train on collected data first to get the Model", Toast.LENGTH_LONG).show();
@@ -125,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Plot Graph
         Button plotBtn = (Button) findViewById(R.id.GraphPlotBtn);
         plotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * If any row exists with incomplete data, remove that row entry
+     */
     private void checkDB() {
         File dir = new File(Constants.filePath);
         if (dir.exists()) {
@@ -156,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Override onDestroy
-     * on Destroy, receivers will be unregistered and DB will be closed.
      */
     @Override
     public void onDestroy() {
@@ -165,8 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Override onDestroy
-     * on Destroy, receivers will be unregistered and DB will be closed.
+     * Override onBackPressed
      */
     @Override
     public void onBackPressed() {

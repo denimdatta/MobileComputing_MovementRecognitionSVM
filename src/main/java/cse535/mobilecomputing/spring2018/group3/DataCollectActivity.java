@@ -13,6 +13,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * DataCollectActivity
+ *
+ * @author Group3 CSE535 Spring 2018
+ */
 public class DataCollectActivity extends AppCompatActivity {
 
     static SQLiteDatabase db = null;
@@ -29,6 +34,7 @@ public class DataCollectActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(DataCollectActivity.this, DataCollectStatusActivity.class);
 
+        // Run: Set intent activity as "Run" and call DataCollectStatusActivity
         runBtn = (Button) findViewById(R.id.RunningBtn);
         runBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +46,7 @@ public class DataCollectActivity extends AppCompatActivity {
             }
         });
 
+        // Walk: Set intent activity as "Walk" and call DataCollectStatusActivity
         walkBtn = (Button) findViewById(R.id.WalkingBtn);
         walkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +58,7 @@ public class DataCollectActivity extends AppCompatActivity {
             }
         });
 
+        // Jump: Set intent activity as "Jump" and call DataCollectStatusActivity
         jumpBtn = (Button) findViewById(R.id.JumpingBtn);
         jumpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +99,9 @@ public class DataCollectActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    /**
+     * Get the count of collected data and shoe with the button
+     */
     @Override
     public void onResume(){
         if(db == null) {
