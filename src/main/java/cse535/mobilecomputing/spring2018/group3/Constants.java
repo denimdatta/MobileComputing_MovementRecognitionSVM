@@ -27,6 +27,7 @@ class Constants {
     static final int PREDICTION_LIMIT = 20;
     static final int DELAY = 100;
     static final int REPEAT = 20;
+    static final int TESTCOUNT = REPEAT/3; // 33% Test Data, and 67% Train Data
     static final int FEATURES = 6;
     static final String MODELFILE = "SVM_model.txt";
     static final int RUN_LABEL = 1;

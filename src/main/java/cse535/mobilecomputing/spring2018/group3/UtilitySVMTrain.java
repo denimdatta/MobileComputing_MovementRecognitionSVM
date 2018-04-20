@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import libsvm.*;
+
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
@@ -22,6 +23,8 @@ class UtilitySVMTrain {
     private int cross_validation;
     private int nr_fold;
     private double accuracy = -1;
+    Vector<String> testLabel = new Vector<>();
+    Vector<double[]> testFeature = new Vector<>();
 
     private static svm_print_interface svm_print_null = new svm_print_interface() {
         public void print(String s) {
@@ -92,7 +95,7 @@ class UtilitySVMTrain {
             for (i = 0; i < prob.l; i++)
                 if (target[i] == prob.y[i])
                     ++total_correct;
-            accuracy = 100.0 * total_correct / prob.l;
+            // accuracy = 100.0 * total_correct / prob.l;
         }
     }
 
@@ -116,6 +119,15 @@ class UtilitySVMTrain {
             model = svm.svm_train(prob, param);
             svm.svm_save_model(Constants.filePath + Constants.MODELFILE, model);
         }
+
+        int correct = 0;
+        for (int i = 0; i < testLabel.size(); i++) {
+            String predicted = UtilitySVMPredict.prediction(testFeature.elementAt(i));
+            if (predicted.equalsIgnoreCase(testLabel.elementAt(i))) {
+                correct++;
+            }
+        }
+        accuracy = (correct * 100) / testLabel.size();
     }
 
     public static double train(String argv[]) throws IOException {
@@ -246,6 +258,8 @@ class UtilitySVMTrain {
         Vector<Double> vy = new Vector<>();
         Vector<svm_node[]> vx = new Vector<>();
         int max_index = 0;
+        int train_count = Constants.REPEAT - Constants.TESTCOUNT;
+        int rCount = 0, wCount = 0, jCount = 0;
 
         Utility.createDB();
         SQLiteDatabase db = SQLiteDatabase.openDatabase(Constants.filePath + Constants.DBNAME, null, SQLiteDatabase.OPEN_READONLY);
@@ -253,6 +267,7 @@ class UtilitySVMTrain {
         if (c.moveToFirst()) {
             do {
                 int label = 0;
+                boolean isTestData = false;
                 double[] x_f = new double[Constants.LIMIT];
                 double[] y_f = new double[Constants.LIMIT];
                 double[] z_f = new double[Constants.LIMIT];
@@ -266,10 +281,19 @@ class UtilitySVMTrain {
                 String act = c.getString(3 * Constants.LIMIT + 1);
                 if (act.equalsIgnoreCase(Constants.RUN_VALUE)) {
                     label = Constants.RUN_LABEL;
+                    rCount++;
+                    if (rCount > train_count)
+                        isTestData = true;
                 } else if (act.equalsIgnoreCase(Constants.WALK_VALUE)) {
                     label = Constants.WALK_LABEL;
+                    wCount++;
+                    if (wCount > train_count)
+                        isTestData = true;
                 } else if (act.equalsIgnoreCase(Constants.JUMP_VALUE)) {
                     label = Constants.JUMP_LABEL;
+                    jCount++;
+                    if (jCount > train_count)
+                        isTestData = true;
                 }
 
                 Mean mu = new Mean();
@@ -284,6 +308,12 @@ class UtilitySVMTrain {
                 };
 
                 if (label != 0) {
+                    if (isTestData) {
+                        testFeature.add(features);
+                        testLabel.add(act);
+                        continue;
+                    }
+
                     vy.addElement((double) label);
                     int m = Constants.FEATURES;
                     svm_node[] feat = new svm_node[m];
@@ -292,7 +322,7 @@ class UtilitySVMTrain {
                         feat[j].index = j + 1;
                         feat[j].value = features[j];
                     }
-                    // if (m > 0)
+                    if (m > 0)
                         max_index = Math.max(max_index, feat[m - 1].index);
                     vx.addElement(feat);
                 }
