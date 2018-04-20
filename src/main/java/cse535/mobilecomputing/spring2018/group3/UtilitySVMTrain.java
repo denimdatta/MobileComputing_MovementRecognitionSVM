@@ -151,14 +151,14 @@ class UtilitySVMTrain {
 
     private void parse_command_line(String argv[]) {
         int i;
-        svm_print_interface print_func = null;    // default printing to stdout
+        svm_print_interface print_func = null;
 
         param = new svm_parameter();
         // default values
         param.svm_type = svm_parameter.C_SVC;
         param.kernel_type = svm_parameter.RBF;
         param.degree = 3;
-        param.gamma = 0;    // 1/num_features
+        param.gamma = 0;
         param.coef0 = 0;
         param.nu = 0.5;
         param.cache_size = 100;
