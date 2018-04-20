@@ -7,13 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DataCollectStatusActivity extends Activity {
 
@@ -21,7 +16,6 @@ public class DataCollectStatusActivity extends Activity {
     int count;
     float curX, curY, curZ;
     boolean isSensorReceiverRegistered = false;
-    boolean isCollectionComplete = false;
     final ExtendedBroadcastReceiver sdReceiver = new ExtendedBroadcastReceiver();
     final IntentFilter intentFilterSensor = new IntentFilter(Constants.ACCELEROMETER_ACTION);
     String activity = null, id = null;

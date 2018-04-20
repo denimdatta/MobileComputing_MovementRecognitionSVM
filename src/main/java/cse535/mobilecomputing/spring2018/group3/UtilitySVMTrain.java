@@ -23,8 +23,8 @@ class UtilitySVMTrain {
     private int cross_validation;
     private int nr_fold;
     private double accuracy = -1;
-    Vector<String> testLabel = new Vector<>();
-    Vector<double[]> testFeature = new Vector<>();
+    private Vector<String> testLabel = new Vector<>();
+    private Vector<double[]> testFeature = new Vector<>();
 
     private static svm_print_interface svm_print_null = new svm_print_interface() {
         public void print(String s) {
@@ -151,14 +151,14 @@ class UtilitySVMTrain {
 
     private void parse_command_line(String argv[]) {
         int i;
-        svm_print_interface print_func = null;    // default printing to stdout
+        svm_print_interface print_func = null;
 
         param = new svm_parameter();
         // default values
         param.svm_type = svm_parameter.C_SVC;
         param.kernel_type = svm_parameter.RBF;
         param.degree = 3;
-        param.gamma = 0;    // 1/num_features
+        param.gamma = 0;
         param.coef0 = 0;
         param.nu = 0.5;
         param.cache_size = 100;
